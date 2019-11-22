@@ -8,6 +8,11 @@ customer1 = Customer.new({
   'funds' => '1000'
   })
 
+film1 = Film.new({
+  'title' => 'Life of Pi',
+  'price' => '10'
+  })
+
 binding.pry
 
 nil
