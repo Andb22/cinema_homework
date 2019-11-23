@@ -25,4 +25,29 @@ attr_accessor :name, :funds
     SqlRunner.run(sql)
   end
 
+  def delete()
+    sql = "DELETE FROM customers WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
+  def update()
+    sql = "UPDATE customers SET (name, funds) = ($1, $2) WHERE id = $3 "
+    values = [@name, @funds, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.all()
+    sql = "SELECT * from customers"
+    results = SqlRunner.run(sql)
+    return results.map{|result| Customer.new(result)}
+  end
+
+  def films()
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = films.id WHERE cust_id = $1;"
+    values = [@id]
+    film_data = SqlRunner.run(sql, values)
+    return film_data.map{|customer| Customer.new(customer)}
+  end
+
 end

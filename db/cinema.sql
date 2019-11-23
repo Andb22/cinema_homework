@@ -1,4 +1,4 @@
--- DROP TABLE tickets;
+DROP TABLE tickets;
 DROP TABLE films;
 DROP TABLE customers;
 
@@ -13,3 +13,9 @@ CREATE table customers(
   name VARCHAR,
   funds INT
 );
+
+CREATE TABLE tickets(
+  ID SERIAL4 PRIMARY KEY,
+  cust_id INT,
+  film_id INT
+)
